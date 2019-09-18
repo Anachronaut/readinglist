@@ -5,6 +5,7 @@ from menu import Menu
 import ui
 
 store = BookStore()
+QUIT = 'Q'
 
 def main():
 
@@ -14,7 +15,7 @@ def main():
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
         action()
-        if choice == 'Q':
+        if choice == QUIT:
             break
 
 
@@ -47,22 +48,28 @@ def add_book():
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
     ui.show_books(read_books)
+    print("\n") # adding blank line after list of books
 
 
 def show_unread_books():
     unread_books = store.get_books_by_read_value(False)
     ui.show_books(unread_books)
+    print("\n")
 
 
 def show_all_books():
     books = store.get_all_books()
+    print("\n")
     ui.show_books(books)
+    print("\n")
 
 
 def search_book():
     search_term = ui.ask_question('Enter search term, will match partial authors or titles.')
     matches = store.book_search(search_term)
+    print("\n")
     ui.show_books(matches)
+    print("\n")
 
 def delete():
     try:
@@ -77,10 +84,15 @@ def delete():
 def change_read():
 
     book_id = ui.get_book_id()
-    book = store.get_book_by_id(book_id)  
-    new_read = ui.get_read_value()     
-    book.read = new_read 
-    book.save()
+    try:
+
+       book = store.get_book_by_id(book_id)
+    except:
+        ui.message('The book is not in store!')
+    else:
+         new_read = ui.get_read_value()
+         book.read = new_read
+         store.set_book_read(book_id,new_read)
     
 
 def quit_program():
