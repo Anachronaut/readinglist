@@ -67,7 +67,11 @@ def change_read():
         book.read = new_read
         book.save()
     elif book == 'not found':
+        print("The book has been read already")
         create_menu()
+
+
+
 
 
 
