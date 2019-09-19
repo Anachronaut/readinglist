@@ -61,9 +61,14 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)
-    new_read = ui.get_read_value()
-    book.read = new_read
-    book.save()
+
+    if isinstance(book, Book):
+        new_read = ui.get_read_value()
+        book.read = new_read
+        book.save()
+    elif book == 'not found':
+        create_menu()
+
 
 
 def quit_program():

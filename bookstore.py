@@ -185,10 +185,19 @@ class BookStore:
 
             if book_data:
                 book = Book(book_data['title'], book_data['author'], book_data['read'], book_data['rowid'])
+            else:
+                print()
+                print('book ID not found')
+                print()
+                book = 'not found'
 
             con.close()
-
             return book
+
+
+
+
+
 
 
         def book_search(self, term):
