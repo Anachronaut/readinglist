@@ -1,6 +1,6 @@
 import sqlite3
 
-db = 'database/books.db'
+db = 'database\\books.db'
 
 class Book:
 
