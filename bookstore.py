@@ -1,6 +1,6 @@
 import sqlite3
 
-db = 'database/books.db'
+db = 'database\\books.db'
 
 class Book:
 
@@ -18,11 +18,21 @@ class Book:
 
 
     def save(self):
+
+        """ Updates information in Book object (author, title and read values) and adds updated object
+        back into the Bookstore DB. """
+
         if self.id:
             self.bookstore._update_book(self)
         else:
             self.bookstore._add_book(self)
 
+    def delete(self):
+
+        """ Removes the Book object to be deleted from the Bookstore DB """
+
+        if self.id:
+            self.bookstore.delete_book(self)
 
     def __str__(self):
         read_status = 'have' if self.read else 'have not'
@@ -183,6 +193,7 @@ class BookStore:
 
             con.close()
             return book
+
 
 
 

@@ -7,7 +7,7 @@ class TestBookstore(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        bookstore.db = 'database/test_books.db'
+        bookstore.db = 'database\\test_books.db'
         BookStore.instance = None 
 
 
