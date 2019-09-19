@@ -18,6 +18,10 @@ class Book:
 
 
     def save(self):
+
+        """ Updates information in Book object (author, title and read values) and adds updated object
+        back into the Bookstore DB. """
+
         if self.id:
             self.bookstore._update_book(self)
         else:
